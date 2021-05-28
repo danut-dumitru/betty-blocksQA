@@ -27,7 +27,7 @@ test("Error message is displayed in case of wrong credentials", async (t) => {
 test("Error message is displayed in case of wrong password", async (t) => {
   await t
     .typeText(loginSelectors.passwordInput, TESTING_USERNAME)
-    .typeText(loginSelectors.passwordInput, TESTING_PASSWORD)
+    .typeText(loginSelectors.passwordInput, 'Testing1234')
     .click(loginSelectors.login);
 
   await t.expect(loginSelectors.badCredentialsMessage.exists).ok();

@@ -6,6 +6,6 @@ export default {
   login: Selector('[type="submit"]'),
   logout: Selector('a[href$=login]'),
   passwordVisible: Selector('[type="button"]'),
-  badCredentialsMessage: Selector("div[class*=MuiAlert-message]"),
+  badCredentialsMessage: Selector("div[role=alert]"),
 
 };
