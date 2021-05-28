@@ -47,7 +47,7 @@ test("Using an existing registered email to register a new account", async (t) =
   await t
     .typeText(registerSelectors.firstName, randomFirstName)
     .typeText(registerSelectors.lastName, randomLastName)
-    .typeText(registerSelectors.emailAddress, TESTING_USERNAME)
+    .typeText(registerSelectors.emailAddress, TESTING_USERNAME )
     .typeText(registerSelectors.password, passwordUsed);
   await t.click(registerSelectors.createAccount);
   await t.expect(registerSelectors.emailAlreadyUsed.exists).ok();
