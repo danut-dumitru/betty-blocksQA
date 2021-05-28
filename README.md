@@ -4,3 +4,12 @@
 
 ### In order to run the tests in headless mode please run the 'npm run test:ci' command
 ### In order to run the tests in browser mode please run the 'npm run test' command
+
+
+
+
+### Improvements:
+    - Improve selectors 
+    - BDD testing
+    - Take screenshots when tests fail
+    - Reports
