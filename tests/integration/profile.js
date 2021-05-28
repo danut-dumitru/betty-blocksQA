@@ -1,16 +1,22 @@
-import { Selector } from "testcafe";
+import { Selector, t } from "testcafe";
 
 import { BASE_URL, TESTING_USERNAME, TESTING_PASSWORD } from "../../util/env";
 import loginSelectors from "../selectors/login.js";
 import profileSelectors from "../selectors/profile.js";
 
-fixture(`Profile picture tests`).page(`${BASE_URL}/login`);
+fixture(`Profile picture tests`).page(`${BASE_URL}/login`)
+.beforeEach( async t => {
+  await t
+  .typeText(loginSelectors.usernameInput, TESTING_USERNAME)
+  .typeText(loginSelectors.passwordInput, TESTING_PASSWORD)
+  .click(loginSelectors.login);
+})
+  .afterEach( async t => {
+  await t
+  .click(loginSelectors.logout);
+});  
 
 test("Profile picture settings should be available in the account", async (t) => {
-  await t
-    .typeText(loginSelectors.usernameInput, TESTING_USERNAME)
-    .typeText(loginSelectors.passwordInput, TESTING_PASSWORD)
-    .click(loginSelectors.login);
   await t.click(profileSelectors.myAccount);
   await t
     .expect(profileSelectors.loadPictureButton.exists)
@@ -20,10 +26,6 @@ test("Profile picture settings should be available in the account", async (t) =>
 });
 
 test("Upload and save a new avatar", async (t) => {
-  await t
-    .typeText(loginSelectors.usernameInput, TESTING_USERNAME)
-    .typeText(loginSelectors.passwordInput, TESTING_PASSWORD)
-    .click(loginSelectors.login);
   await t.click(profileSelectors.myAccount);
   await t
     .setFilesToUpload(profileSelectors.loadPictureButton, [
@@ -33,10 +35,6 @@ test("Upload and save a new avatar", async (t) => {
 });
 
 test("Remove an uploaded avatar", async (t) => {
-  await t
-    .typeText(loginSelectors.usernameInput, TESTING_USERNAME)
-    .typeText(loginSelectors.passwordInput, TESTING_PASSWORD)
-    .click(loginSelectors.login);
   await t.click(profileSelectors.myAccount);
   await t
     .setFilesToUpload(profileSelectors.loadPictureButton, [
@@ -45,12 +43,8 @@ test("Remove an uploaded avatar", async (t) => {
     .clearUpload(profileSelectors.loadPictureButton);
 });
 
-//The tests below will fail because it's a bug. Even if you upload an invalid file type or a large file it still triggers the save functionality
+//The tests below will fail because of a bug. Even if you upload an invalid file type or a large file it still triggers the save functionality
 test("Upload an invalid file type", async (t) => {
-  await t
-    .typeText(loginSelectors.usernameInput, TESTING_USERNAME)
-    .typeText(loginSelectors.passwordInput, TESTING_PASSWORD)
-    .click(loginSelectors.login);
   await t.click(profileSelectors.myAccount);
   await t
     .setFilesToUpload(profileSelectors.loadPictureButton, [
@@ -62,10 +56,6 @@ test("Upload an invalid file type", async (t) => {
 });
 
 test("Upload large size file", async (t) => {
-  await t
-    .typeText(loginSelectors.usernameInput, TESTING_USERNAME)
-    .typeText(loginSelectors.passwordInput, TESTING_PASSWORD)
-    .click(loginSelectors.login);
   await t.click(profileSelectors.myAccount);
   await t.setFilesToUpload(profileSelectors.loadPictureButton, [
     "../uploads/large-file.jpg",

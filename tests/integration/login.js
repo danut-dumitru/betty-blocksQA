@@ -5,6 +5,8 @@ import loginSelectors from "../selectors/login";
 
 fixture("User login tests").page(`${BASE_URL}/login`);
 
+    
+
 test("User can login using valid credentials ", async (t) => {
   await t
     .typeText(loginSelectors.usernameInput, TESTING_USERNAME)

@@ -5,7 +5,8 @@
   "description": "automated tests based on the requirements in the assignment",
   "main": "index.js",
   "scripts": {
-    "test:ci": "testcafe chrome:headless ./tests/integration/*"
+    "test:ci": "testcafe chrome:headless ./tests/integration/*",
+    "test": "testcafe chrome ./tests/integration/*"
   },
   "repository": {
     "type": "git",
