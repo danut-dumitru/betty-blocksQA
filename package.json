@@ -1,0 +1,28 @@
+{
+  "name": "ui_automation",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "automated tests based on the requirements in the assignment",
+  "main": "index.js",
+  "scripts": {
+    "test:ci": "testcafe chrome:headless ./tests/integration/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danut-dumitru/betty-blocks-qa.git"
+  },
+  "author": "danut_dumitru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danut-dumitru/betty-blocks-qa/issues"
+  },
+  "homepage": "https://github.com/danut-dumitru/betty-blocks-qa#readme",
+  "devDependencies": {
+    "testcafe": "^1.14.2"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "faker": "^5.5.3",
+    "nanoid": "^3.1.23"
+  }
+}

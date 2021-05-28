@@ -1,0 +1,192 @@
+The following test cases and bugs have been added
+
+1. As a new customer I want to register a new account, so that I can use the application
+   
+   1.1 A new customer can register a new account
+     Preconditions: The input data provided should be new not belonging to an already existing account
+	 
+	 Steps: - Go to the login page > Login page displayed
+	        - Click on "Register New Account" > User is redirected to the registration page
+			- Input valid data for all of the fields present > Information has been added to all of the fields
+			- Click on "Create new account" > Account created successfully 
+			
+   1.2 A user should be able to go back to the login page from the registration page
+	 Steps: - Go to the login page > Login page displayed
+	        - Click on "Register New Account" > User is redirected to the registration page
+			- Click on "Back to Login" > Login page appears again
+			
+   1.3 Should not be possible to create an account without adding all of the necessary information
+	 Steps: - Go to the login page > Login page displayed
+	        - Click on "Register New Account" > User is redirected to the registration page
+			- Without adding any information click on the "Create new account" > Account not created due to missing information. "This field is required" appears under all fields
+	
+   1.4 Should not be possible to create an account using information from an already created one
+     Preconditions: The input data provided should belong to an already existing account
+	 
+	 Steps: - Go to the login page > Login page displayed
+	        - Click on "Register New Account" > User is redirected to the registration page
+			- Input valid data from an already existing account > Information has been added to all of the fields
+			- Click on "Create new account" > Account not created. Following error message should appear: "This email already exists"
+	
+    
+	 Bugs found in this area:
+	    1. The error message received when trying to create an account using a taken email address
+		   - Go to the registration page
+		   - Input data in all of the necessary fields
+		   - For the email field add an already taken email address
+		   - Click on "Create account"
+		   Actual result: "Error error: This email already exists" message is present
+		   Expected result: "Error : This email already exists" should appear
+		   
+		2. "Create account" request gets stuck when deleting the information from the fields after the user is informed the email is taken
+		   - Go to the registration page
+		   - Input data in all of the necessary fields
+		   - For the email field add an already taken email address
+		   - Click on "Create account"
+		   - Delete all of the information from all of the fields
+		   - Click on "Create account" again
+		   Actual result: "Create account" button gets greyed out and the request gets stuck in pending
+		   Expected result: When trying to create an account with no information present error messages should appear to inform the user the fields are required
+		   
+		3. "Your logo here" appears instead of an image
+		   - Go to the registration page
+		   - Check the page that is displayed
+		   Actual result: "Your logo here" appears instead of an actual logo
+		   Expected result: An image or a logo should be displayed
+		   
+		4. The wrong error message is displayed for the password requirement
+		   - Go to the registration page
+		   - In the password field add 4 uppercase characters+ 4 lowercase characters + 4 digits
+		   Actual result: No error message is displayed for the password requirement
+		   Expected result: Since the current error message states "Password must contain 8 characters, 1 lowercase character, 1 upper case character, and 1 digit" either fix the bug or at "at least" for all of the necessary requirements
+		   
+2. As a new customer I want my account to be protected with a password, so that only people who know the password can access my account
+
+   1.1 A user should be able to login in an account if the credentials are correct
+     Preconditions : An already created account is needed in order to login
+	 
+	 Steps: - Go to the login page > Login page is displayed
+	        - Input an email address that belongs to an already created account > Email address added
+			- Input the corresponding password for the email above > Password added 
+			- Click on the "Login" button > The user is redirected to the account dashboard
+			
+   1.2 Should not be possible to login with invalid credentials
+     Steps: - Go to the login page > Login page is displayed
+	        - Add an email that doesn't belong to any account
+			- Input any password
+			- Click on the "Login" button > It is not possible to login if the credentials are not valid. Error message is displayed informing the user that the credentials are wrong
+			
+   1.3 Should not be possible to login if the password is incorrect
+     Preconditions : An already created account is needed in order to login
+	 
+     Steps: - Go to the login page > Login page is displayed
+	        - Add an email address that belongs to an already created account > Email address added
+			- Input a wrong password
+			- Click on the "Login" button > It is not possible to login if the password added is invalid. Error message is displayed informing the user that the credentials are wrong
+	
+   1.3 Should not be possible to login if no information has been provided 
+     Steps: - Go to the login page > Login page is displayed
+	        - Don't add any information in the fields > Fields are empty
+			- Press the "Login" button > Nothing happens and the user is informed that both the email address and the password are required
+			
+	 Bugs found in this area:
+	    1. The email address format is not validated
+		    - Go to the login page
+			- In the email address field input something like "test@abcd"
+		    Actual result: No error message appears underneath the email address field
+			Expected result: Since the email format should be "xxx@xxx.xxx" we should display a message stating that the value is invalid
+			
+		2. "Your logo here" appears instead of an image
+		   - Go to the login page
+		   - Check the page that is displayed
+		   Actual result: "Your logo here" appears instead of an actual logo
+		   Expected result: An image or a logo should be displayed
+		   
+		3. Login request remains in pending state after deleting invalid data and pressing the button again
+		   - Go to the login page
+		   - Input something like "test@test" in the email address field
+		   - Input random data in the password field
+		   - Click on the "Login" button > Error message appears which is correct 
+		   - Delete the invalid data added
+		   - Click on the "Login" button again
+		   Actual result: Login button gets greyed out and the request remains in pending state
+		   Expected result: The login request should not trigger if no information is present
+	
+3. As a user I want to change my avatar, so that I can personalize my account
+
+   1.1 A user should have the options to change the avatar for the account
+     Preconditions : An already created account is needed in order to login
+	 
+	 Steps: - Go to the login page > Login page is displayed
+	        - Input an email address that belongs to an already created account > Email address added
+			- Input the corresponding password for the email above > Password added 
+			- Click on the "Login" button > The user is redirected to the account dashboard
+			- Click on "My Account" > Profile details page is displayed. The option to change the profile image is present
+			
+   1.2 A user should be able to change the avatar from the profile details page
+     Steps: - Go to the login page > Login page is displayed
+	        - Input an email address that belongs to an already created account > Email address added
+			- Input the corresponding password for the email above > Password added 
+			- Click on the "Login" button > The user is redirected to the account dashboard
+			- Click on "My account" > Profile details page is displayed. The option to change the profile image is present
+			- Click on "Upload" > computer browser appears in order to select an image
+			- Select a valid image from your computer > Image is uploaded
+			- Press "Save Changes" > Avatar changed
+			
+   1.3 Should not be possible to upload invalid files 
+     Preconditions: Make sure that you have an invalid file like a .txt with the file extension changed to .jpg
+	 Steps: - Go to the login page > Login page is displayed
+	        - Input an email address that belongs to an already created account > email address added
+			- Input the corresponding password for the email above > Password added 
+			- Click on the "Login" button > The user is redirected to the account dashboard
+			- Click on "My account" > Profile details page is displayed. The option to change the profile image is present
+			- Click on "Upload" > computer browser appears in order to select an image
+			- Select the invalid file mentioned in the preconditions > Upload should fail and an error message stating that the file is invalid should appear
+			
+   1.4 The user should get an error message when trying to upload a large size file
+	 Preconditions: Make sure that you have a .jpg file that has at least 15mb 
+	 Steps: - Go to the login page > Login page is displayed
+	        - Input an email address that belongs to an already created account > email address added
+			- Input the corresponding password for the email above > Password added 
+			- Click on the "Login" button > The user is redirected to the account dashboard
+			- Click on "My account" > Profile details page is displayed. The option to change the profile image is present
+			- Click on "Upload" > computer browser appears in order to select an image
+            - Select the large size .jpg file > Upload should fail and the user should be informed that the file is too large			
+   
+     Bugs found in this area:
+	    1. "Login flow" text appears in the account details page
+		    - Go to the login page 
+	        - Input an email address that belongs to an already created account 
+			- Input the corresponding password for the email above
+			- Click on the "Login" button
+			- Check the account details page
+			Actual result: The text "Login flow" appears in this page
+			Expected result: Anything related to the login flow should only appear in the login page
+	    
+		2. The message displayed when trying to upload a large file is not user friendly
+		    - Go to the login page 
+	        - Input an email address that belongs to an already created account
+			- Input the corresponding password for the email above
+			- Click on the "Login" button
+			- Click on "My account"
+			- Click on "Upload"
+            - Select the large size .jpg file
+			Actual result: The following error message appears: "Network error: ajax error 413"
+			Expected result: A user friendly message should be displayed when trying to upload large files
+			
+		3. "Save Changes" button should only be enabled when there are changes made on the page (improvement) 
+		    - In "My Account", even though you don't change anything in terms of details if you press "Save changes" you will still get the "Success" message
+		
+		4. Avatar does not updated on the page after you successfully upload a file and save the changes
+		    - Go to the login page 
+	        - Input an email address that belongs to an already created account
+			- Input the corresponding password for the email above
+			- Click on the "Login" button
+			- Click on "My account"
+			- Click on "Upload"
+			- Select a valid file
+			- Press "Save Changes"
+			Actual result: The process has been successful but the avatar did not change in the profile details. You need to refresh the page to update it
+			Expected result: The avatar should change once you save the changes 
+	  
+		 
