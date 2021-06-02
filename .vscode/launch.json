@@ -9,10 +9,10 @@
         "protocol": "inspector",
         "request": "launch",
         "name": "Launch test files with TestCafe",
-        "program": "${workspaceRoot}/AutomationTests/user-login.js",
+        "program": "${workspaceRoot}/node_modules/testcafe/bin/testcafe.js",
         "args": [
             "chrome",
-            "${relativeFile}"
+            "${workspaceRoot}/tests//integration/*"
         ],
         "console": "integratedTerminal",
         "cwd": "${workspaceRoot}"

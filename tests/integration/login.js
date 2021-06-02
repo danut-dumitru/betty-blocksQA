@@ -17,7 +17,7 @@ test("User can login using valid credentials ", async (t) => {
 
 test("Error message is displayed in case of wrong credentials", async (t) => {
   await t
-    .typeText(loginSelectors.passwordInput, "invalid@test.com")
+    .typeText(loginSelectors.usernameInput, "invalid@test.com")
     .typeText(loginSelectors.passwordInput, "Wrongpassword1")
     .click(loginSelectors.login);
 
@@ -26,7 +26,7 @@ test("Error message is displayed in case of wrong credentials", async (t) => {
 
 test("Error message is displayed in case of wrong password", async (t) => {
   await t
-    .typeText(loginSelectors.passwordInput, TESTING_USERNAME)
+    .typeText(loginSelectors.usernameInput, TESTING_USERNAME)
     .typeText(loginSelectors.passwordInput, 'Testing1234')
     .click(loginSelectors.login);
 
